@@ -74,9 +74,12 @@
   @media (max-width: 1023px) { #leash .livery-colours > p { grid-column: 1 / -1; padding-block: var(--s-3); } }
   @media (min-width: 640px) and (max-width: 1023px) { #leash .livery-colours > p { padding-block: var(--s-5); } }
   /* a phone shows the key art at 4:3, as the product hero states for a photograph, so the hero stays one screen */
-  @media (max-width: 639px) { .hero--product .hero__stage { aspect-ratio: 4 / 3; } }
+  @media (max-width: 639px) { .hero--product .hero__stage { aspect-ratio: auto; flex: 1 1 auto; min-height: 260px; margin-bottom: 0; } }
   /* the livery's three colours: a chip before each name */
   #leash .mo-la__sub { color: var(--ink); }
+  /* the livery's name in its own red, the one coloured word on the page; the scattered letters stay inside the section */
+  #leash .leash-red { color: var(--p-accent); }
+  #leash { overflow: clip; }
   .livery-colours { margin-top: var(--s-7); }
   .livery-colours p { margin: 0; display: flex; gap: var(--s-3); align-items: baseline; }
   .livery-colours i { flex: none; width: 14px; height: 14px; align-self: center; border: 1px solid var(--line-strong); }
@@ -85,11 +88,12 @@
   .results th { font: 500 var(--t-label)/1.2 var(--font-text); color: var(--muted); text-align: left; padding: 0 0 var(--s-4); }
   .results td { padding: var(--s-4) 0; border-top: 1px solid var(--line); vertical-align: baseline; }
   .results :is(th, td):not(:first-child) { text-align: right; padding-left: var(--s-6); }
-  .results .track { display: block; font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(22px, 2.6vw, 36px); line-height: 1.1; letter-spacing: var(--display-tracking); }
+  .results .track { display: block; font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; letter-spacing: var(--display-tracking); }
   .results .track { display: inline; }
   .results .class { display: inline-block; margin-left: var(--s-4); font-size: var(--t-small); color: var(--muted); }
-  .results .pos { font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(22px, 2.6vw, 36px); line-height: 1.1; }
+  .results .pos { font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; }
   .results .pos--start { color: var(--muted); }
+  .results .pos--win { color: var(--p-accent); }
   .results-photo { --ratio: 100%; }
   @media (min-width: 640px) and (max-width: 1023px) {
     #results .grid > :is(.results, .results-photo) { grid-column: 1 / -1; } #results .results-photo { --ratio: 40%; margin-top: var(--s-6); }
@@ -139,7 +143,7 @@
       <div class="nav__item"><a class="nav__link" href="/">Ayz Studios</a></div>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--primary" href="https://ig.me/m/lanyaracingoffical" target="_blank" rel="noopener">Join the team</a>
+      <a class="btn btn--primary" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -156,7 +160,7 @@
           <h1 id="hero-h">Lanya Racing, a sim racing team</h1>
           <p class="hero__lead">Racing LMGT3 and Hypercar in Assetto Corsa Competizione and Le Mans Ultimate.</p>
         </div>
-        <div class="btn-row"><a class="btn btn--primary" href="https://ig.me/m/lanyaracingoffical" target="_blank" rel="noopener">Join the team</a><a class="btn btn--secondary" href="#livery">See the livery</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team</a><a class="btn btn--secondary" href="#livery">See the livery</a></div>
       </div>
       <div class="hero__stage">
         <img src="photos/red-leash-1.webp" alt="The red and black Lanya Racing McLaren through a corner in low evening sun, red and yellow kerbs beside it" width="1672" height="941" style="--ly-pos: 50% 58%" fetchpriority="high" data-source="client" data-subject="the Red Leash livery on track">
@@ -186,7 +190,7 @@
 
   <section class="section" id="leash" data-moment="letters-assemble" aria-labelledby="leash-h">
     <div class="wrap">
-      <h2 class="mo-la__type" id="leash-h">Meet The Red Leash</h2>
+      <h2 class="mo-la__type" id="leash-h">Meet The <span class="leash-red">Red Leash</span></h2>
       <p class="mo-la__sub">Our current livery: red bodywork under black contour lines, a black bonnet and roof, and yellow lettering on a McLaren 720S GT3.</p>
       <div class="grid livery-colours">
         <p class="span-4"><i style="background:#e41821"></i><span><strong>Lanya red</strong> <span class="muted">bodywork and mirrors</span></span></p>
@@ -232,7 +236,7 @@
           <tr><td><span class="track">Laguna Seca</span><span class="class">LMGT3</span></td><td class="pos pos--start">P12</td><td class="pos">P2</td></tr>
           <tr><td><span class="track">Fuji Speedway</span><span class="class">LMGT3</span></td><td class="pos pos--start">P28</td><td class="pos">DNF</td></tr>
           <tr><td><span class="track">Bahrain Circuit</span><span class="class">Hypercar</span></td><td class="pos pos--start">P4</td><td class="pos">P5</td></tr>
-          <tr><td><span class="track">Monza</span><span class="class">LMGT3</span></td><td class="pos pos--start">P1</td><td class="pos">P1</td></tr>
+          <tr><td><span class="track">Monza</span><span class="class">LMGT3</span></td><td class="pos pos--start">P1</td><td class="pos pos--win">P1</td></tr>
         </tbody>
       </table>
       <!-- CLIENT FILE results photograph: photos/red-devil-1.webp (in-game, 1672x941) -->
@@ -249,7 +253,7 @@
         <h2 id="close-h">Race for Lanya Racing</h2>
         <p>Apply with a direct message on Instagram. We read every application and get back to you.</p>
       </div>
-      <a class="btn btn--primary btn--xl btn--wide" href="https://ig.me/m/lanyaracingoffical" target="_blank" rel="noopener">Join the team<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary btn--xl btn--wide" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <div class="closing__links">
       <div class="grid">
@@ -257,14 +261,13 @@
           <a class="nav__logo" href="#top"><img src="lanya-logo-256.webp" alt="Lanya Racing" width="256" height="143" loading="lazy"></a>
           <p class="footer__lede">Sim racing in LMGT3 and Hypercar.</p>
         </div>
-        <div class="span-2 footer__col"><h3>Racing</h3><ul><li><a href="#racing">Classes</a></li><li><a href="#livery">Livery</a></li><li><a href="#results">Results</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Team</h3><ul><li><a href="https://instagram.com/lanyaracingoffical" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+        <div class="span-2 start-7 footer__col"><h3>Racing</h3><ul><li><a href="#racing">Classes</a></li><li><a href="#livery">Livery</a></li><li><a href="#results">Results</a></li></ul></div>
         <div class="span-2 footer__col"><h3>Ayz Studios</h3><ul><li><a href="/">Home</a></li><li><a href="https://sorula.net" target="_blank" rel="noopener">Sorula</a></li></ul></div>
         <div class="span-2 footer__col"><a class="powered" href="/" aria-label="Powered by AYZ, Ayz Studios"><span>Powered by</span><img src="ayz-mark-96.webp" alt="" width="96" height="93" loading="lazy"></a></div>
       </div>
       <div class="footer__legal">
         <span>&copy; 2026 Lanya Racing. Product names and logos are trademarks of their owners.</span>
-        <div class="socials"><a href="https://instagram.com/lanyaracingoffical" target="_blank" rel="noopener" aria-label="Lanya Racing on Instagram"><img class="ic ic-24 ic-ink" src="assets/icons/instagram.svg" alt="" width="24" height="24" loading="lazy"></a></div>
+        <div class="socials"><a href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener" aria-label="Lanya Racing on Instagram"><img class="ic ic-24 ic-ink" src="assets/icons/instagram.svg" alt="" width="24" height="24" loading="lazy"></a></div>
       </div>
     </div>
   </div>
