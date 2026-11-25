@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" data-type="software" data-radius="sharp" data-tone="dark" data-buttons="block" data-motion>
+<html lang="en" data-type="software" data-radius="sharp" data-tone="dark" data-buttons="pill" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lanya Racing: a sim racing team in LMGT3 and Hypercar</title>
-<meta name="description" content="Lanya Racing races LMGT3 and Hypercar in Assetto Corsa Competizione and Le Mans Ultimate. Apply to join by Instagram message.">
+<meta name="description" content="Lanya Racing races LMGT3 and Hypercar in Assetto Corsa Competizione and Le Mans Ultimate. See the liveries, the latest results and how to join.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lanya Racing: a sim racing team in LMGT3 and Hypercar">
 <meta property="og:description" content="Sim racing in Assetto Corsa Competizione and Le Mans Ultimate. Powered by AYZ.">
@@ -18,7 +18,7 @@
 <meta name="page-type" content="software">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..600&family=Geist+Mono:wght@400..500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/system.css">
 <link rel="stylesheet" href="assets/ui/cards.css">
 <link rel="stylesheet" href="assets/motion/motion.css">
@@ -31,14 +31,13 @@
   --p-accent: #e41821; --p-accent-ink: #ffffff; --p-action: #e41821; --p-action-ink: #ffffff;
   --p-inv-bg: #f4f4f2; --p-inv-surface: #e1e1e0; --p-inv-ink: #0c0c0e; --p-inv-muted: #59595a;
   --p-inv-accent: #e41821; --p-inv-accent-ink: #ffffff; --p-inv-action: #e41821; --p-inv-action-ink: #ffffff;
-  --font-display: "Mona Sans", system-ui, sans-serif;
-  --font-text: "Mona Sans", system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --display-weight: 500;
-  --display-tracking: -0.03em;
-  --display-tracking-xl: -0.04em;
-  --display-stretch: 104%;
-  --ly-scale: 0.96;
+  --font-display: "Epilogue", system-ui, sans-serif;
+  --font-text: "Epilogue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.035em;
+  --display-tracking-xl: -0.045em;
+  --ly-scale: 0.97;
 }
 </style>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
@@ -46,72 +45,84 @@
 <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 <link rel="modulepreload" href="assets/moments/moments.js">
 <link rel="modulepreload" href="assets/moments/lib.js">
-<link rel="modulepreload" href="assets/moments/letters-assemble/moment.js">
-<link rel="stylesheet" href="assets/moments/letters-assemble/moment.css">
+<link rel="modulepreload" href="assets/moments/giant-type-pass/moment.js">
+<link rel="modulepreload" href="assets/moments/line-carries-colour/moment.js">
+<link rel="stylesheet" href="assets/moments/giant-type-pass/moment.css">
+<link rel="stylesheet" href="assets/moments/line-carries-colour/moment.css">
 <!-- page CSS: only inside a visual -->
 <style>
   .nav__logo img { height: 36px; width: auto; }
-  /* the class cards: the class name set large in the display face is the card's picture */
+
+  /* the class cards: the class name set large in the display face is the card's picture, on a still card ground */
   #racing .panel { --p-h: 300px; flex: none; height: var(--p-h); display: grid; place-items: end start; padding: var(--s-6); }
-  #racing .class-type { position: relative; z-index: 2; display: block; }
-  #racing .class-type { font-family: var(--font-display); font-weight: var(--display-weight); font-stretch: 125%; font-style: italic;
-    font-size: clamp(48px, 7vw, 112px); line-height: .9; letter-spacing: -0.03em; color: var(--ink); margin: 0; }
+  #racing .class-type { position: relative; z-index: 2; display: block; font-family: var(--font-display); font-weight: 500; font-style: italic;
+    font-size: clamp(48px, 7vw, 112px); line-height: .9; letter-spacing: -0.04em; color: var(--ink); }
   #racing .class-type b { font-weight: inherit; color: var(--p-accent); }
   @media (min-width: 640px) and (max-width: 1023px) { #racing .panel { --p-h: 500px; } }
   @media (max-width: 639px) { #racing .panel { --p-h: 150px; padding: 0 0 var(--s-3); } }
-  /* the statement is the moment's picture: larger where the screen is tall */
-  @media (min-width: 640px) and (max-width: 1023px) { #leash .mo-la__type { font-size: 16.5vw; } }
-  @media (max-width: 639px) { #leash .mo-la__type { font-size: 21vw; } }
-  /* the livery pairs: one ratio a row, sized so each group fills its screen */
-  #livery .frame { --ratio: 56.25%; }
+
+  /* the statement: larger and one step heavier than the kit's size, so the car reads through the letters */
+  #leash .mo-gt__type { font-size: clamp(64px, 16vw, 250px); font-weight: 500; letter-spacing: -0.045em; }
+  @media (max-width: 639px) { #leash .mo-gt__type { font-size: 22vw; } }
+
+  /* the livery colours: a chip before each name, one row each */
+  .chips { display: grid; gap: 0; align-content: end; }
+  .chips p { margin: 0; display: flex; gap: var(--s-3); align-items: baseline; padding-block: var(--s-4); border-top: 1px solid var(--line); }
+  .chips i { flex: none; width: 14px; height: 14px; align-self: center; border: 1px solid var(--line-strong); }
+  .chips--row { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--s-5); margin-top: var(--s-5); }
   .livery-group h3 { margin: 0 0 var(--s-5); font-size: var(--t-card); }
-  /* the tablet stacks each pair at full width, wide crops, one group a screen */
-  @media (min-width: 640px) and (max-width: 1023px) { #livery .grid > .frame { grid-column: 1 / -1; --ratio: 52%; } }
-  @media (min-width: 640px) and (max-width: 799px) { #livery .grid > .frame { --ratio: 45%; } #livery .livery-group:last-child .frame { --ratio: 52%; } }
-  @media (min-width: 1024px) and (max-width: 1279px) { #livery .grid > .frame { --ratio: 90%; } }
-  @media (min-width: 1280px) { #livery .grid > .frame { --ratio: 80%; } }
-  /* under 1024 the three colours stand as rows, one under the other */
-  @media (max-width: 1023px) { #leash .livery-colours > p { grid-column: 1 / -1; padding-block: var(--s-3); } }
-  @media (min-width: 640px) and (max-width: 1023px) { #leash .livery-colours > p { padding-block: var(--s-5); } }
-  /* a phone shows the key art at 4:3, as the product hero states for a photograph, so the hero stays one screen */
-  @media (max-width: 639px) { .hero--product .hero__stage { aspect-ratio: auto; flex: 1 1 auto; min-height: 260px; margin-bottom: 0; } }
-  /* the livery's three colours: a chip before each name */
-  #leash .mo-la__sub { color: var(--ink); }
-  /* the livery's name in its own red, the one coloured word on the page; the scattered letters stay inside the section */
-  #leash .leash-red { color: var(--p-accent); }
-  #leash { overflow: clip; }
-  .livery-colours { margin-top: var(--s-7); }
-  .livery-colours p { margin: 0; display: flex; gap: var(--s-3); align-items: baseline; }
-  .livery-colours i { flex: none; width: 14px; height: 14px; align-self: center; border: 1px solid var(--line-strong); }
+  #livery .frame--lead { --ratio: 35%; }
+  #livery .frame--lead > .frame__img { object-position: var(--pos, 50% 50%); }
+  #livery .trio .frame { --ratio: 100%; }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    #livery .frame--lead { --ratio: 56%; }
+    #livery .trio .frame { grid-column: auto / span 4; --ratio: 125%; }
+    .chips--row { grid-template-columns: 1fr; } }
+  @media (min-width: 640px) and (max-width: 799px) { #livery .trio .frame { --ratio: 170%; } }
+  @media (max-width: 639px) {
+    .chips--row { grid-template-columns: 1fr; }
+    #livery .frame--lead { --ratio: 62%; }
+    #livery .trio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #livery .trio .frame { grid-column: auto / span 1; }
+    #livery .trio .frame:first-child { grid-column: 1 / -1; --ratio: 62%; } }
+
   /* the results table is the section's picture: each track set large, start and finish in the display face */
   .results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
   .results th { font: 500 var(--t-label)/1.2 var(--font-text); color: var(--muted); text-align: left; padding: 0 0 var(--s-4); }
   .results td { padding: var(--s-4) 0; border-top: 1px solid var(--line); vertical-align: baseline; }
   .results :is(th, td):not(:first-child) { text-align: right; padding-left: var(--s-6); }
-  .results .track { display: block; font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; letter-spacing: var(--display-tracking); }
-  .results .track { display: inline; }
+  .results .track { font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; letter-spacing: var(--display-tracking); }
   .results .class { display: inline-block; margin-left: var(--s-4); font-size: var(--t-small); color: var(--muted); }
-  .results .pos { font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; }
+  .results .pos { font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; }
   .results .pos--start { color: var(--muted); }
-  .results .pos--win { color: var(--p-accent); }
+  .results .pos--win { color: var(--accent); }
   .results-photo { --ratio: 100%; }
   @media (min-width: 640px) and (max-width: 1023px) {
-    #results .grid > :is(.results, .results-photo) { grid-column: 1 / -1; } #results .results-photo { --ratio: 40%; margin-top: var(--s-6); }
+    #results .grid > :is(.results, .results-photo) { grid-column: 1 / -1; }
+    #results .results-photo { --ratio: 40%; margin-top: var(--s-6); }
     .results :is(.track, .pos) { font-size: 28px; } .results :is(th, td):first-child { width: 48%; } }
-  @media (max-width: 639px) { .results-photo { --ratio: 125%; margin-top: var(--s-6); } }
-  @media (max-width: 639px) { .results .track { display: block; } .results .class { display: block; margin: var(--s-1) 0 0; } }
+  @media (max-width: 639px) { .results .track { display: block; } .results .class { display: block; margin: var(--s-1) 0 0; } .results-photo { --ratio: 175%; margin-top: var(--s-6); } }
+
+  /* the name across the .wrap: "Lanya Racing" is twelve letters, so it is set smaller than the kit's eight-letter size */
+  .closing .close__word { font-size: min(calc((100vw - 2 * var(--gut)) * .164), 210px); padding-bottom: .16em; max-width: 100%; }
+  @media (max-width: 639px) { .closing .close__word { white-space: normal; font-size: calc((100vw - 2 * var(--gut)) * .3); line-height: .9; } }
+  /* the tablet footer: the brand across, then the three columns from line to line */
+  @media (min-width: 640px) and (max-width: 1023px) { #contact .closing__links .grid > * { grid-column: auto / span 4; } #contact .closing__links .grid > :first-child { grid-column: 1 / -1; } }
   .powered { display: inline-flex; align-items: center; min-height: 44px; gap: var(--s-2); text-decoration: none; color: var(--ink); }
   .powered img { width: 40px; height: auto; }
+  /* a phone shows the key art in what the head row leaves of the screen */
+  @media (max-width: 639px) { .hero--product .hero__stage { aspect-ratio: auto; flex: 1 1 auto; min-height: 260px; margin-bottom: 0; } }
 </style>
 </head>
 <body>
-<!-- type: software (site-kind gaming: a sim racing team; its world is the in-game shots)
-     deal: hero product, nav nav-mega, close close-type, footer footer-dark (dealt footer-statement; dealt again: its pale lit ground hides the white Lanya logo on a black-red page), rhythm space (dealt media-band; dealt again when the band's photograph moved beside the results table),
-           buttons block, mark initial (replaced by the client's logo), grounds none, effect none
-     palette: the client's own colours through start.mjs brand (the logo's red #E41821 on carbon black), type mona (anybody dealt first; its h1 failed hero-lines at 390), radius sharp
-     moments: letters-assemble in #leash (its own statement section) -->
+<!-- type: software (site-kind gaming: a sim racing team; its world is the team's own in-game shots)
+     deal: hero product (dealt photo, then film: both set the words in a box on the photograph, and every client frame has the car in the middle, so the box would cover it;
+           the product hero puts the words on a head row above the key art), nav nav-centre, close close-word, footer footer-dark,
+           rhythm dark-band (#results on the inverse ground), buttons pill, mark stack (replaced by the client's logo), grounds none, effect none
+     palette: the client's own colours through start.mjs brand (the logo's red #E41821 on carbon black), type epilogue, radius sharp (the logo's cut corners)
+     moments: giant-type-pass in #leash (its own statement section), line-carries-colour in #results (the inverse ground) -->
 
-<header class="nav">
+<header class="nav nav--centre">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top">Skip to content</a>
     <a class="nav__logo" href="#top"><img src="lanya-logo-256.webp" alt="Lanya Racing" width="256" height="143"></a>
@@ -128,13 +139,7 @@
             <div class="menu-col span-3">
               <p class="t-label">Season</p>
               <a href="#results">Results<span>Our last five races</span></a>
-              <a href="#livery">Liveries<span>The Red Leash and The Red Devil</span></a>
             </div>
-            <a class="menu-card span-3 start-10" href="#livery">
-              <div class="panel"><img class="frame__img" src="photos/red-devil-4-900.webp" alt="The Red Devil McLaren on a wet straight, headlights on" width="900" height="507" loading="lazy"></div>
-              <span class="t-card">The Red Devil</span>
-              <span class="t-small muted">Our former livery</span>
-            </a>
           </div>
         </div>
       </div>
@@ -160,10 +165,10 @@
           <h1 id="hero-h">Lanya Racing, a sim racing team</h1>
           <p class="hero__lead">Racing LMGT3 and Hypercar in Assetto Corsa Competizione and Le Mans Ultimate.</p>
         </div>
-        <div class="btn-row"><a class="btn btn--primary" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team</a><a class="btn btn--secondary" href="#livery">See the livery</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team</a><a class="btn btn--secondary" href="#livery">See the liveries</a></div>
       </div>
       <div class="hero__stage">
-        <img src="photos/red-leash-1.webp" alt="The red and black Lanya Racing McLaren through a corner in low evening sun, red and yellow kerbs beside it" width="1672" height="941" style="--ly-pos: 50% 58%" fetchpriority="high" data-source="client" data-subject="the Red Leash livery on track">
+        <img src="photos/red-leash-1.webp" srcset="photos/red-leash-1-720.webp 720w, photos/red-leash-1.webp 1672w" sizes="(max-width: 639px) 180vw, 100vw" alt="The red and black Lanya Racing McLaren through a corner in low evening sun, red and yellow kerbs beside it" width="1672" height="941" style="--ly-pos: 50% 58%" fetchpriority="high" data-source="client" data-subject="the Red Leash livery on track">
       </div>
     </div></div>
   </section>
@@ -188,59 +193,63 @@
     </div>
   </section>
 
-  <section class="section" id="leash" data-moment="letters-assemble" aria-labelledby="leash-h">
+  <!-- CLIENT FILE statement photograph: photos/red-leash-3.webp (in-game, 1254x1254), seen through the letters; the path is written from assets/moments/giant-type-pass/, where moment.css resolves it -->
+  <section class="section statement" id="leash" data-moment="giant-type-pass" data-moment-opts='{"image": "../../../photos/red-leash-3.webp", "travel": 60, "focusY": 55}' aria-labelledby="leash-h">
     <div class="wrap">
-      <h2 class="mo-la__type" id="leash-h">Meet The <span class="leash-red">Red Leash</span></h2>
-      <p class="mo-la__sub">Our current livery: red bodywork under black contour lines, a black bonnet and roof, and yellow lettering on a McLaren 720S GT3.</p>
-      <div class="grid livery-colours">
-        <p class="span-4"><i style="background:#e41821"></i><span><strong>Lanya red</strong> <span class="muted">bodywork and mirrors</span></span></p>
-        <p class="span-4"><i style="background:#0c0c0e; border-color: var(--muted)"></i><span><strong>Black</strong> <span class="muted">bonnet, roof and contour lines</span></span></p>
-        <p class="span-4"><i style="background:#f2c230"></i><span><strong>Yellow</strong> <span class="muted">sponsor lettering</span></span></p>
-      </div>
+      <h2 class="mo-gt__type" id="leash-h">The Red<br>Leash</h2>
+      <div class="mo-gt__row"><p>Our current livery: red bodywork under black contour lines, a black bonnet and roof, and yellow lettering on a McLaren 720S GT3.</p><a class="link" href="#livery">See the liveries</a></div>
     </div>
   </section>
 
-  <!-- CLIENT FILE livery shots: photos/red-leash-2.webp, photos/red-leash-3.webp (current) and photos/red-devil-2.webp, photos/red-devil-3.webp (former), all in-game -->
-  <section class="section g2" id="livery" aria-labelledby="livery-h">
+  <!-- CLIENT FILE livery shots: photos/red-leash-2.webp (current), photos/red-devil-2, -3 and -4.webp (former), all in-game -->
+  <section class="section g2" id="livery" aria-labelledby="livery-h" style="--hm: 2">
     <div class="wrap">
       <div class="group livery-group">
         <div class="section-head">
           <h2 id="livery-h">Livery photos from the track</h2>
         </div>
         <h3>The Red Leash. <span class="muted">Our current racing livery.</span></h3>
-        <div class="grid">
-          <figure class="frame frame--photo span-6"><img class="frame__img" src="photos/red-leash-3.webp" srcset="photos/red-leash-3-900.webp 900w, photos/red-leash-3-1200.webp 1200w, photos/red-leash-3.webp 1254w" sizes="(min-width: 1024px) 50vw, 100vw" alt="The Red Leash McLaren on a dry track beside green run-off and red and white kerbs" width="1254" height="1254" style="--pos: 50% 50%" loading="lazy" data-source="client" data-subject="the Red Leash livery, front three-quarter"></figure>
-          <figure class="frame frame--photo span-6"><img class="frame__img" src="photos/red-leash-2.webp" srcset="photos/red-leash-2-900.webp 900w, photos/red-leash-2-1200.webp 1200w, photos/red-leash-2.webp 1672w" sizes="(min-width: 1280px) 67vw, (min-width: 1024px) 73vw, 100vw" alt="The Red Leash McLaren past a green barrier in afternoon light, trees behind the fence" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Leash livery, side and front"></figure>
+        <figure class="frame frame--photo frame--lead"><img class="frame__img" src="photos/red-leash-2.webp" srcset="photos/red-leash-2-900.webp 900w, photos/red-leash-2-1200.webp 1200w, photos/red-leash-2.webp 1672w" sizes="100vw" alt="The Red Leash McLaren past a green barrier in afternoon light, trees behind the fence" width="1672" height="941" style="--pos: 50% 62%" loading="lazy" data-source="client" data-subject="the Red Leash livery, side and front"></figure>
+        <div class="chips chips--row">
+          <p><i style="background:#e41821"></i><span><strong>Lanya red</strong> <span class="muted">bodywork and mirrors</span></span></p>
+          <p><i style="background:#0c0c0e; border-color: var(--muted)"></i><span><strong>Black</strong> <span class="muted">bonnet, roof, contour lines</span></span></p>
+          <p><i style="background:#f2c230"></i><span><strong>Yellow</strong> <span class="muted">sponsor lettering</span></span></p>
         </div>
       </div>
       <div class="group livery-group">
         <h3>The Red Devil. <span class="muted">Our former racing livery.</span></h3>
-        <div class="grid">
-        <figure class="frame frame--photo span-6"><img class="frame__img" src="photos/red-devil-2.webp" srcset="photos/red-devil-2-900.webp 900w, photos/red-devil-2-1200.webp 1200w, photos/red-devil-2.webp 1672w" sizes="(min-width: 1280px) 67vw, (min-width: 1024px) 73vw, 100vw" alt="The McLaren in evening light past a green barrier, fans in red behind the fence" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Devil livery, front three-quarter"></figure>
-        <figure class="frame frame--photo span-6"><img class="frame__img" src="photos/red-devil-3.webp" srcset="photos/red-devil-3-900.webp 900w, photos/red-devil-3-1200.webp 1200w, photos/red-devil-3.webp 1672w" sizes="(min-width: 1280px) 67vw, (min-width: 1024px) 73vw, 100vw" alt="The McLaren through a wet right-hander, spray off the rear tyres and red and white kerbs" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Devil livery in a wet corner"></figure>
+        <div class="grid trio">
+          <figure class="frame frame--photo span-4"><img class="frame__img" src="photos/red-devil-4.webp" srcset="photos/red-devil-4-900.webp 900w, photos/red-devil-4.webp 1672w" sizes="(min-width: 1024px) 50vw, 100vw" alt="The Red Devil McLaren on a wet straight, headlights on" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Devil livery on a wet straight"></figure>
+          <figure class="frame frame--photo span-4"><img class="frame__img" src="photos/red-devil-2.webp" srcset="photos/red-devil-2-360.webp 360w, photos/red-devil-2-900.webp 900w, photos/red-devil-2-1200.webp 1200w, photos/red-devil-2.webp 1672w" sizes="(min-width: 1024px) 50vw, (min-width: 640px) 100vw, 80vw" alt="The Red Devil McLaren in evening light past a green barrier, fans in red behind the fence" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Devil livery, front three-quarter"></figure>
+          <figure class="frame frame--photo span-4"><img class="frame__img" src="photos/red-devil-3.webp" srcset="photos/red-devil-3-360.webp 360w, photos/red-devil-3-900.webp 900w, photos/red-devil-3-1200.webp 1200w, photos/red-devil-3.webp 1672w" sizes="(min-width: 1024px) 50vw, (min-width: 640px) 100vw, 80vw" alt="The Red Devil McLaren through a wet right-hander, spray off the rear tyres" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Devil livery in a wet corner"></figure>
+        </div>
+        <div class="chips chips--row">
+          <p><i style="background:#0c0c0e; border-color: var(--muted)"></i><span><strong>Carbon black</strong> <span class="muted">body, wing and roof</span></span></p>
+          <p><i style="background:#e41821"></i><span><strong>Lanya red</strong> <span class="muted">bonnet V and mirrors</span></span></p>
+          <p><i style="background:#f4f4f2"></i><span><strong>White</strong> <span class="muted">flashes along the flanks</span></span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="results" style="--hm: 2" aria-labelledby="results-h">
+  <section class="section ground-inverse" id="results" data-moment="line-carries-colour" data-moment-opts='{"from": "base"}' style="--hm: 2" aria-labelledby="results-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="results-h">Racing results from our last five races. <span class="muted">A win at Monza from pole.</span></h2>
       </div>
       <div class="grid grid--top">
-      <table class="results span-7">
-        <thead><tr><th scope="col">Track and class</th><th scope="col">Start</th><th scope="col">Finish</th></tr></thead>
-        <tbody>
-          <tr><td><span class="track">Brands Hatch</span><span class="class">LMGT3</span></td><td class="pos pos--start">P19</td><td class="pos">P24</td></tr>
-          <tr><td><span class="track">Laguna Seca</span><span class="class">LMGT3</span></td><td class="pos pos--start">P12</td><td class="pos">P2</td></tr>
-          <tr><td><span class="track">Fuji Speedway</span><span class="class">LMGT3</span></td><td class="pos pos--start">P28</td><td class="pos">DNF</td></tr>
-          <tr><td><span class="track">Bahrain Circuit</span><span class="class">Hypercar</span></td><td class="pos pos--start">P4</td><td class="pos">P5</td></tr>
-          <tr><td><span class="track">Monza</span><span class="class">LMGT3</span></td><td class="pos pos--start">P1</td><td class="pos pos--win">P1</td></tr>
-        </tbody>
-      </table>
-      <!-- CLIENT FILE results photograph: photos/red-devil-1.webp (in-game, 1672x941) -->
-      <figure class="frame frame--photo span-5 start-8 results-photo"><img class="frame__img" src="photos/red-devil-1.webp" srcset="photos/red-devil-1-900.webp 900w, photos/red-devil-1.webp 1672w" sizes="(max-width: 639px) 222vw, 100vw" alt="The Red Devil McLaren in heavy rain, spray behind the rear wheels" width="1672" height="941" style="--pos: 50% 50%" loading="lazy" data-source="client" data-subject="the Red Devil livery in the rain"></figure>
+        <table class="results span-7">
+          <thead><tr><th scope="col">Track and class</th><th scope="col">Start</th><th scope="col">Finish</th></tr></thead>
+          <tbody>
+            <tr><td><span class="track">Brands Hatch</span><span class="class">LMGT3</span></td><td class="pos pos--start">P19</td><td class="pos">P24</td></tr>
+            <tr><td><span class="track">Laguna Seca</span><span class="class">LMGT3</span></td><td class="pos pos--start">P12</td><td class="pos">P2</td></tr>
+            <tr><td><span class="track">Fuji Speedway</span><span class="class">LMGT3</span></td><td class="pos pos--start">P28</td><td class="pos">DNF</td></tr>
+            <tr><td><span class="track">Bahrain Circuit</span><span class="class">Hypercar</span></td><td class="pos pos--start">P4</td><td class="pos">P5</td></tr>
+            <tr><td><span class="track">Monza</span><span class="class">LMGT3</span></td><td class="pos pos--start">P1</td><td class="pos pos--win">P1</td></tr>
+          </tbody>
+        </table>
+        <!-- CLIENT FILE results photograph: photos/red-devil-1.webp (in-game, 1672x941) -->
+        <figure class="frame frame--photo span-5 start-8 results-photo"><img class="frame__img" src="photos/red-devil-1.webp" srcset="photos/red-devil-1-900.webp 900w, photos/red-devil-1.webp 1672w" sizes="(max-width: 639px) 222vw, 100vw" alt="The Red Devil McLaren in heavy rain, spray behind the rear wheels" width="1672" height="941" loading="lazy" data-source="client" data-subject="the Red Devil livery in the rain"></figure>
       </div>
     </div>
   </section>
@@ -248,12 +257,12 @@
 
 <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
   <div class="wrap">
-    <div class="closing__cta close--type">
-      <div class="section-head">
-        <h2 id="close-h">Race for Lanya Racing</h2>
-        <p>Apply with a direct message on Instagram. We read every application and get back to you.</p>
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div><h2 id="close-h">Race for Lanya Racing</h2><p class="t-lead">Apply with a direct message on Instagram. We read every application and get back to you.</p></div>
+        <a class="btn btn--primary" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
       </div>
-      <a class="btn btn--primary btn--xl btn--wide" href="https://www.instagram.com/lanyaracingoffical/" target="_blank" rel="noopener">Join the team<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <p class="close__word" aria-hidden="true">Lanya Racing</p>
     </div>
     <div class="closing__links">
       <div class="grid">
